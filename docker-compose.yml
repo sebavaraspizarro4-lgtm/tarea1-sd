@@ -38,4 +38,4 @@ services:
       - TOTAL_CONSULTAS=1000
       - CACHE_SERVICE_URL=http://response_generator:5001
 
-}
+
