@@ -4,15 +4,15 @@ import time
 import os
 import json
 
-# Tus variables actuales
-CACHE_URL = os.getenv("CACHE_SERVICE_URL", "http://response_generator:5001")
-# ... resto de tus variables ...
 
-# --- INSERTA ESTA FUNCIÓN AQUÍ ---
+CACHE_URL = os.getenv("CACHE_SERVICE_URL", "http://response_generator:5001")
+
+
+
 def enviar_con_reintento(payload):
-    for i in range(15):  # Damos más intentos porque el dataset es pesado
+    for i in range(15):
         try:
-            # El endpoint debe ser /query según el flujo del sistema [cite: 40, 64]
+
             response = requests.post(f"{CACHE_URL}/query", json=payload, timeout=5)
             return response
         except requests.exceptions.ConnectionError:
@@ -25,7 +25,7 @@ ZIPF_S      = float(os.getenv("ZIPF_S", 1.5))
 
 ZONES       = ["Z1", "Z2", "Z3", "Z4", "Z5"]
 QTYPES      = ["Q1", "Q2", "Q3", "Q4", "Q5"]
-CONF_VALUES = [0.0, 0.5, 0.7]
+CONF_VALUES = np.linspace(0, 1, 20).tolist()
 
 def zipf_weights(n, s):
     w = [1 / ((i + 1) ** s) for i in range(n)]
@@ -72,10 +72,10 @@ def run():
             print(f"Error consulta {i}: {e}")
         time.sleep(0.01)
 
-    os.makedirs("/results", exist_ok=True)
-    with open("/results/traffic_results.json", "w") as f:
+    os.makedirs("results", exist_ok=True)
+    with open("results/traffic_results.json", "w") as f:
         json.dump({"distribution": DIST, "results": results}, f)
-    print("Resultados guardados en /results/traffic_results.json")
+    print("Resultados guardados en results/traffic_results.json")
 
 if __name__ == "__main__":
     run()
