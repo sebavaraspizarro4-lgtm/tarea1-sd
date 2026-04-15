@@ -1,5 +1,6 @@
 Tarea 1: Sistemas Distribuidos 
-Descripción
+
+Descripción: 
 Este proyecto implementa una arquitectura de servicios utilizando Docker para simular la gestión de consultas geográficas sobre un dataset de edificios en Santiago, este sistema utiliza una capa de caché con Redis para optimizar los tiempos de respuesta y persiste métricas de rendimiento en una base de datos SQLite.
 
 Arquitectura
