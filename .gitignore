@@ -1,0 +1,7 @@
+data/*.csv
+__pycache__/
+*.pyc
+data/*.gz
+data/967_buildings.csv
+data/santiago_buildings.csv
+venv/
