@@ -13,13 +13,16 @@ Redis Cache: Almacena los resultados de consultas frecuentes para reducir la lat
 
 Metrics Service: Almacena estadísticas de Hit Rate y latencia (p50, p95) en SQLite.
 
-Instalación y Ejecución
+Instalación y Ejecución:
+
 Requisitos previos:
+
 Docker y Docker Compose instalado.
 
 Dataset santiago_buildings.csv en la carpeta /data.
 
 Pasos para iniciar:
+
 Clonar el repositorio:
 
 git clone https://github.com/tu-usuario/tarea1-sd.git
@@ -27,18 +30,19 @@ cd tarea1-sd
 Configurar la distribución:
 Edita el archivo docker-compose.yml y ajusta la variable DISTRIBUTION entre zipf o uniform.
 
-Levantar los servicios
+Levantar los servicios:
 
 docker-compose up --build
 
-Análisis de Resultados
+Análisis de Resultados:
 Los resultados de la simulación se guardan automáticamente en la carpeta /results:
 
 traffic_results.json: Registro detallado de cada consulta (Hit/Miss y Latencia).
 
 metrics.db: Base de datos SQLite con el histórico de eventos.
 
-Comparativa de Rendimiento (Observada)
+Comparativa de Rendimiento (Observada):
+
 Latencia Promedio (Cache Hit): ~7ms.
 
 Latencia Promedio (Cache Miss): ~70ms - 120ms.
