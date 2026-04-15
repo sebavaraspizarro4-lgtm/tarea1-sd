@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7
+    command: redis-server --maxmemory 50mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+
+  response_generator:
+    build: ./response_generator
+    depends_on:
+      - redis
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "5001:5001"
+    environment:
+      - REDIS_HOST=redis
+
+  metrics:
+    build: ./metrics
+    volumes:
+      - ./results:/app/results
+    ports:
+      - "5002:5002"
+
+  traffic_generator:
+    build: ./traffic_generator
+    depends_on:
+      - redis
+      - response_generator
+      - metrics
+    volumes:
+      - ./results:/app/results
+    environment:
+      - DISTRIBUCION=uniform
+      - TOTAL_CONSULTAS=1000
+      - CACHE_SERVICE_URL=http://response_generator:5001
+
+}
