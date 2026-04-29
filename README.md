@@ -36,7 +36,7 @@ Levantar los servicios:
 docker-compose up --build
 
 Análisis de Resultados:
-Los resultados de la simulación se guardan automáticamente en la carpeta /results:
+Los resultados de la simulación se guardan automáticamente en la carpeta /results, asi que despues hay que renombrar los archivos cada uno, los de uniforme se mueven a results/datos_uniforme.json y los zipf a results/datos_zipf.json
 
 traffic_results.json: Registro detallado de cada consulta (Hit/Miss y Latencia).
 
